@@ -1,3 +1,6 @@
+#pragma once
+
+
 #include <iostream>
 #include <SDL.h>
 
@@ -8,11 +11,16 @@ private:
     const int window_width = 1000;
     const int window_height = 562;
     const char * name;
+
+protected:
     // Making a SDL_Window object
     SDL_Window * window = NULL;
 
     // Making a SDL_Renderer to use GPU and to upload sprites.
     SDL_Renderer * renderer = NULL;
+protected:
+    // Default window surface
+    SDL_Surface * surface = make_surface();
 
 public:
     // Outside Functions that can be called.
@@ -37,6 +45,8 @@ public:
 
     // Destructor kill all objects and free the memory here..
     ~Game();
+
+    Game();
 
     // Loads a bmp image surface when a path_to_bmp is provided
     SDL_Surface * load_png_on_surface(const char * path_to_bmp);

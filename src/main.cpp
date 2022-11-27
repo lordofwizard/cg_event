@@ -1,5 +1,7 @@
+
 #include "game.h"
+#include "image.h"
 
 int main(){
-    Game g("Event System");
+    Image I;
 }

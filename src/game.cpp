@@ -32,9 +32,10 @@ void Game::make_window(const char * window_name){
     }
     else{
         // Creation of a surface object..!
-        SDL_Surface * surface = make_surface();
-        SDL_FillRect(surface , NULL, SDL_MapRGB( surface->format, 0xFF, 0xFF, 0xFF ));
-        SDL_UpdateWindowSurface(window);
+        //surface = make_surface();
+        //SDL_FillRect(surface , NULL, SDL_MapRGB( surface->format, 0xFF, 0xFF, 0xFF ));
+        //SDL_UpdateWindowSurface(window);
+        std::cout << "Window is Initialized" << std::endl;
     }
 }
 
@@ -54,8 +55,8 @@ void Game::event_handeling(){
 SDL_Surface * Game::make_surface(){
     // Returns a surface object with white background..! over the window which is private
     // But in the scope of Game class
-    SDL_Surface * surface = SDL_GetWindowSurface(window);
-    return surface;
+    SDL_Surface * surf= SDL_GetWindowSurface(window);
+    return surf;
 }
 
 
@@ -67,7 +68,7 @@ Game::Game(const char * name){
 
     initializer();
     make_window(name);
-    event_handeling();
+    //event_handeling();
 }
 
 Game::~Game(){
@@ -76,6 +77,7 @@ Game::~Game(){
         Deletes all surface objects as well as
         any data in memory is freed here
     */
+    SDL_FreeSurface(surface);
     SDL_DestroyWindow( window );
     SDL_Quit();
 }
@@ -96,4 +98,7 @@ SDL_Surface * Game::load_png_on_surface(const char * path_to_bmp){
         return surf;
     }
     return NULL;
+}
+Game::Game(){
+    make_window("Event Handeling Bitch");
 }
